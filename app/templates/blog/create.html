@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Create Blog Post{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Create New Blog Post</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="topic" class="form-label">Blog Topic</label>
+                            <input type="text" class="form-control" id="topic" name="topic" required
+                                placeholder="Enter the topic for your blog post...">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="text_model" class="form-label">Text Generation Model</label>
+                            <select class="form-select" id="text_model" name="text_model" required>
+                                {% for model in text_models %}
+                                <option value="{{ model.id }}">{{ model.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image_model" class="form-label">Image Generation Model</label>
+                            <select class="form-select" id="image_model" name="image_model" required>
+                                {% for model in image_models %}
+                                <option value="{{ model.id }}">{{ model.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="prompt" class="form-label">Blog Prompt</label>
+                            <textarea class="form-control" id="prompt" name="prompt" rows="4" required
+                                placeholder="Enter your blog topic or prompt here...">You are an expert blog writer. Create a simple blog post with a short introduction and multiple paragraphs along with a conclusion.</textarea>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Generate Blog Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

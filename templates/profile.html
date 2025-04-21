@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2 class="text-center mb-4">Profile Settings</h2>
+    <form method="POST" action="{{ url_for('profile') }}">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.openai_api_key.label(class="form-label") }}
+            {{ form.openai_api_key(class="form-control", type="password") }}
+            {% if form.openai_api_key.errors %}
+                {% for error in form.openai_api_key.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+            <div class="form-text">
+                Your OpenAI API key will be stored securely and used for API calls.
+                You can find your API key in your OpenAI account settings.
+            </div>
+        </div>
+        <div class="d-grid">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+{% endblock %} 
